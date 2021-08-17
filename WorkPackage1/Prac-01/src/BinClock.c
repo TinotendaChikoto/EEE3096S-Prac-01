@@ -31,7 +31,8 @@ void CleanUp(int sig){
 	printf("Cleaning up\n");
 
 	//Set LED to low then input mode
-	//Logic here
+	digitalWrite(LED, LOW);
+	pinMode(LED, INPUT); 
 
 
 	for (int j=0; j < sizeof(BTNS)/sizeof(BTNS[0]); j++) {
@@ -55,7 +56,8 @@ void initGPIO(void){
 	RTC = wiringPiI2CSetup(RTCAddr); //Set up the RTC
 	
 	//Set up the LED
-	//Write your Logic here
+	digitalWrite(LED, HIGH);
+	pinMode(LED, OUTPUT); 
 
 	
 	printf("LED and RTC done\n");
@@ -67,7 +69,7 @@ void initGPIO(void){
 	}
 	
 	//Attach interrupts to Buttons
-	//Write your logic here
+	wiringPiISR(BTNS[j],INT_EDGE_RISING,&callback_function);
 	
 
 
